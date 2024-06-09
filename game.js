@@ -1,5 +1,6 @@
 let gameSeq=[];
 let userSeq=[];
+let numbers=[];
 
 let btns= ["red","yellow","green","purple"]
 
@@ -7,6 +8,7 @@ let started=false;
 let level=0;
 
 let h2 = document.querySelector("h2");
+let h3= document.querySelector("h3");
 
 document.addEventListener("keypress",function(){
     if(started==false){
@@ -51,13 +53,22 @@ function checkAns(idx){
     }
     else{
         h2.innerText = `GAME OVER! Your score was ${gameSeq.length-1} \n Press any to start.`;
-        
+
+        numbers.push(gameSeq.length-1);
+        let higSc=Math.max(...numbers);
+        h3.innerText =`HIGEST SCORE : ${higSc}`;
+
         document.querySelector("body").style.backgroundColor="red";
         setTimeout(function(){
             document.querySelector("body").style.backgroundColor="white";
         }, 150);
 
         reset();
+
+        
+
+
+
     }
 }
 
@@ -85,3 +96,5 @@ function reset(){
     userSeq=[];
     level=0;
 }
+
+
